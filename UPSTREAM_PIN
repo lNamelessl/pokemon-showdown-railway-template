@@ -1,0 +1,4 @@
+# Pinned upstream commit of smogon/pokemon-showdown
+# To upgrade: replace this SHA (get the latest from
+# https://github.com/smogon/pokemon-showdown/commits/master), commit, and redeploy.
+SHOWDOWN_COMMIT=aa17ca0fac8bc5605df673bd8774c2d0e91efa43
