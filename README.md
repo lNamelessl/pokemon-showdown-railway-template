@@ -1,6 +1,6 @@
 # Pokemon Showdown Server on Railway
 
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.app/new?github_url=https://github.com/OWNER/pokemon-showdown-railway-template)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/pokemon-showdown-1)
 
 Run your own [Pokemon Showdown](https://github.com/smogon/pokemon-showdown) battle server — the open-source server behind pokemonshowdown.com — with one click. Custom ladders and formats, your own moderation team, your own chat rooms, on your own Railway URL.
 
