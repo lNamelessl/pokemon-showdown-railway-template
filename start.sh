@@ -15,7 +15,9 @@ fi
 mkdir -p /data/logs/repl /data/logs/chat /data/logs/modlog \
          /data/logs/tickets /data/logs/battles /data/logs/users
 
-# Replace the image's dirs with symlinks into the volume (idempotent).
+# Replace the image's dirs with symlinks into the volume (idempotent; the
+# rm is required because ln -sfn cannot replace an existing real directory).
+rm -rf /app/logs /app/config
 ln -sfn /data/logs /app/logs
 ln -sfn /data/config /app/config
 
