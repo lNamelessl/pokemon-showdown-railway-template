@@ -10,7 +10,7 @@ Run your own [Pokemon Showdown](https://github.com/smogon/pokemon-showdown) batt
 
 ## Deploy
 
-1. Click the button, deploy the service, and attach a **volume** when prompted (mounted at `/app/logs`; see below for why).
+1. Click the button and deploy — Railway attaches a **volume** mounted at `/app/data`. The start script symlinks Showdown's persistent directories (`logs/` for battle logs/replays/chat logs, `config/` for your config, `usergroups.csv`, custom CSS/JS) into it, so everything survives redeploys.
 2. Railway injects `PORT`; the start script passes it to Showdown (`node pokemon-showdown $PORT`). No manual port wiring needed.
 3. When the deployment is live, open your public domain — you'll be redirected to `https://<yourserver>.insecure.psim.us`, the hosted Showdown client, which connects back to your server over WebSockets. This is expected: the client UI is served by Showdown's public client host, but battles run on *your* server.
 
@@ -44,7 +44,7 @@ The upstream repo moves daily; this template pins a commit so your server never 
 | --- | --- |
 | Deployment healthcheck fails | Railway probes `/` on the assigned `PORT`. Make sure you didn't override `PORT`; Showdown listens on it via the start script. |
 | Client says "connection lost" / wrong server | The `PORT` variable must be the one Railway exposes on your public domain — don't hardcode 8000. |
-| Battle logs / replays vanish after redeploy | The volume isn't mounted at `/app/logs`. Attach it and redeploy. |
+| Battle logs / replays vanish after redeploy | The volume isn't mounted at `/app/data` (the start script symlinks `logs/` and `config/` into it). Re-attach and redeploy. |
 | `usergroups.csv` ignored | No space after the comma (`YourName,~`), and the username must be registered first. |
 | Build fails on Node version | Upstream requires Node ≥ 22.18; the Dockerfile pins `node:22-slim`. Bump the base image if upstream moves past 22. |
 | Wrong server name shown | Edit `config/config.js` (server name) on the volume; it hot-reloads (`watchconfig`). |
