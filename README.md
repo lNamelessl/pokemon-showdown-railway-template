@@ -42,7 +42,7 @@ The upstream repo moves daily; this template pins a commit so your server never 
 
 | Symptom | Fix |
 | --- | --- |
-| Deployment healthcheck fails | Railway probes `/crossdomain.xml` over the assigned `PORT`. Make sure you didn't override `PORT`; Showdown listens on it via the start script. |
+| Deployment healthcheck fails | Railway probes `/` on the assigned `PORT`. Make sure you didn't override `PORT`; Showdown listens on it via the start script. |
 | Client says "connection lost" / wrong server | The `PORT` variable must be the one Railway exposes on your public domain — don't hardcode 8000. |
 | Battle logs / replays vanish after redeploy | The volume isn't mounted at `/app/logs`. Attach it and redeploy. |
 | `usergroups.csv` ignored | No space after the comma (`YourName,~`), and the username must be registered first. |
