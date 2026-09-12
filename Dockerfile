@@ -22,7 +22,8 @@ WORKDIR /app
 COPY --from=build /build /app
 COPY start.sh /app/start.sh
 RUN chmod +x /app/start.sh \
-    && if [ ! -f /app/config/config.js ]; then cp /app/config/config-example.js /app/config/config.js; fi
+    && if [ ! -f /app/config/config.js ]; then cp /app/config/config-example.js /app/config/config.js; fi \
+    && cp -a /app/config /app/config-dist
 ENV PORT=8000
 EXPOSE 8000
 CMD ["/app/start.sh"]
